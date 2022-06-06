@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <h1 class="title mainTitle">
+    Mi website con Django
+    </h1>
+    
+    <p class="subtitle">
+    Un framework con Python
+    </p>
+
+    {% for elem in  context %}
+    
+        <li class="margen">{{elem}}</li> 
+     
+    {% endfor %}
+    
+{% endblock content %}
+    

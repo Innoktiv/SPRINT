@@ -1,0 +1,17 @@
+* {
+    margin: 0.5em;
+}
+
+nav {
+    background-color: rgb(52, 2, 65);
+    color: azure;
+}
+
+footer {
+    background-color: rgb(52, 2, 65);
+    color: azure;
+}
+
+.margen{
+    margin-left: 5em;
+}
