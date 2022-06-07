@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Profesor
-from .forms import ProfesorForm
+from .forms import ProfesorForm, UserRegistrationForm
 
 # Create your views here.
+@login_required
 def index(request):
     
     listado = Profesor.objects.all()   
@@ -34,3 +38,19 @@ def create(request):
         return redirect('/aplicacion')
 
     return render(request, 'aplicacion/create.html', {'form': form})  
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']        
+            messages.success(request, f'Usuario {username} creado exitosamente.')
+            return redirect('login')
+    
+    else:
+        form = UserRegistrationForm()
+ 
+    context = {'form': form}
+
+    return render(request, 'aplicacion/register.html', context)
